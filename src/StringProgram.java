@@ -19,6 +19,7 @@ public class StringProgram {
 			System.out.println("10 Reverse only all the vowels in the string");
 			System.out.println("11 Compare after backSpace");
 			System.out.println("12 Rverse each Word");
+			System.out.println("13. Permutation of String");
 			System.out.println("Enter choice");
 			int choice = sc.nextInt();
 			switch (choice) {
@@ -196,30 +197,22 @@ public class StringProgram {
 				s1 = sc.nextLine();
 				StringBuilder sb = new StringBuilder();
 				StringBuilder sb1 = new StringBuilder();
-				
-				for(char c:s.toCharArray())
-				{
-					if(c=='#')
-					{
-						if(sb.length()>0)
-						{
-							sb.deleteCharAt(sb.length()-1);
+
+				for (char c : s.toCharArray()) {
+					if (c == '#') {
+						if (sb.length() > 0) {
+							sb.deleteCharAt(sb.length() - 1);
 						}
-					}
-					else {
+					} else {
 						sb.append(c);
 					}
 				}
-				for(char c:s1.toCharArray())
-				{
-					if(c=='#')
-					{
-						if(sb1.length()>0)
-						{
-							sb1.deleteCharAt(sb1.length()-1);
+				for (char c : s1.toCharArray()) {
+					if (c == '#') {
+						if (sb1.length() > 0) {
+							sb1.deleteCharAt(sb1.length() - 1);
 						}
-					}
-					else {
+					} else {
 						sb1.append(c);
 					}
 				}
@@ -227,30 +220,59 @@ public class StringProgram {
 				break;
 			case 12:
 				sc.nextLine();
-				s=sc.nextLine();
-				s1="";
-				for(int i=0;i<s.length();i++)
-				{
-					for(int k=i;k<=s.length();k++)
-					{
-						if(k==s.length()||s.charAt(k)==' ')
-						{
-							String f=s.substring(i, k);
-							for(int m=f.length()-1;m>=0;m--)
-							{
-								s1+=f.charAt(m);
+				s = sc.nextLine();
+				s1 = "";
+				for (int i = 0; i < s.length(); i++) {
+					for (int k = i; k <= s.length(); k++) {
+						if (k == s.length() || s.charAt(k) == ' ') {
+							String f = s.substring(i, k);
+							for (int m = f.length() - 1; m >= 0; m--) {
+								s1 += f.charAt(m);
 							}
 						}
-						s1+=' ';
-						i=k;
+						s1 += ' ';
+						i = k;
 					}
 				}
 				System.out.println(s1);
+				break;
+			case 13:
+				sc.nextLine();
+				System.out.println("ENter String: ");
+				s = sc.nextLine();
+
+				char c[] = new char[s.length()];
+				for (int i = 0; i < c.length; i++) {
+					c[i] = s.charAt(i);
+				}
+				System.out.println("Permutations");
+				permutation(c, 0);
+
 				break;
 			default:
 				System.out.println("Wrong choice");
 			}
 		} while (true);
+	}
+
+	static void permutation(char[] c, int index) {
+		if (index == c.length - 1) {
+			System.out.println(new String(c));
+			return;
+		}
+		for (int i = index; i < c.length; i++) {
+			swap(c, index, i);
+
+			permutation(c, index + 1);
+
+			swap(c, index, i);
+		}
+	}
+
+	static void swap(char[] c, int index, int i) {
+		char temp = c[index];
+		c[index] = c[i];
+		c[i] = temp;
 	}
 
 }

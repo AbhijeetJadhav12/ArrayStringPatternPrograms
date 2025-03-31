@@ -26,6 +26,7 @@ public class ArrayProgram {
 			System.out.println("13. Subarray with Max Sum(kadane's algorithm)");
 			System.out.println("14. Subarray with given sum");
 			System.out.println("15. Rotate array from N position");
+			System.out.println("17. Kth smallest element and Largest element");
 			System.out.println("Enter your choice");
 			int choice = sc.nextInt();
 
@@ -156,18 +157,21 @@ public class ArrayProgram {
 				}
 				int mergeLength = arr.length + b.length;
 				int k = 0;
-				int mergedArray[] = new int[mergeLength];
 				for (int i = 0; i < arr.length; i++) {
-					mergedArray[k] = arr[i];
-					k++;
+					System.out.print(arr[i] + "\t");
 				}
 				for (int i = 0; i < b.length; i++) {
-					mergedArray[k] = b[i];
-					k++;
-				}
-				System.out.println("Merged Array");
-				for (int i = 0; i < mergedArray.length; i++) {
-					System.out.print(mergedArray[i] + "\t");
+
+					boolean isCommon = false;
+					for (int j = 0; j < arr.length; j++) {
+						if (arr[j] == b[i]) {
+							isCommon = true;
+						}
+
+					}
+					if (!isCommon) {
+						System.out.print(b[i] + "\t");
+					}
 				}
 				break;
 			case 9:
@@ -194,14 +198,27 @@ public class ArrayProgram {
 				for (int i = 0; i < c.length; i++) {
 					c[i] = sc.nextInt();
 				}
+				k = 0;
+				int temp[] = new int[sSize + arr.length];
 				System.out.println("Common elements");
 				for (int i = 0; i < arr.length; i++) {
 					for (int j = 0; j < c.length; j++) {
 						if (arr[i] == c[j]) {
-							System.out.print(c[j] + "\t");
+							boolean alreadyadded = false;
+							for (int x = 0; x < k; x++) {
+								if (arr[i] == temp[x]) {
+									alreadyadded = true;
+								}
+							}
+							if (!alreadyadded) {
+								temp[k++] = arr[i];
+							}
 							break;
 						}
 					}
+				}
+				for (int i = 0; i < k; i++) {
+					System.out.println(temp[i]);
 				}
 				break;
 			case 11:
@@ -240,9 +257,9 @@ public class ArrayProgram {
 				for (int i = 0; i < arr.length; i++) {
 					for (int j = 0; j < arr.length; j++) {
 						if (arr[i] < arr[j]) {
-							int temp = arr[i];
+							int temp1 = arr[i];
 							arr[i] = arr[j];
-							arr[j] = temp;
+							arr[j] = temp1;
 						}
 					}
 				}
@@ -309,11 +326,11 @@ public class ArrayProgram {
 				System.out.println("Enter index from you want to rotate array");
 				int index = sc.nextInt();
 				for (int i = 0; i < index; i++) {
-					int temp = arr[0];
+					int temp1 = arr[0];
 					for (int j = 0; j < size - 1; j++) {
 						arr[j] = arr[j + 1];
 					}
-					arr[size - 1] = temp;
+					arr[size - 1] = temp1;
 				}
 				System.out.println("Array after rotating");
 				for (int i = 0; i < arr.length; i++) {
@@ -344,6 +361,28 @@ public class ArrayProgram {
 					}
 				}
 				break;
+			case 17:
+				System.out.println("Enter value of k");
+				k = sc.nextInt();
+				for (int i = 0; i < arr.length; i++) {
+					for (int j = i + 1; j < arr.length; j++) {
+						if (arr[i] > arr[j]) {
+							int tem=arr[i];
+							arr[i]=arr[j];
+							arr[j]=tem;
+						}
+					}
+				}
+				if(k>0 && k<=arr.length) {
+					System.out.println("The "+k+" Smallest element is "+arr[k-1]);
+					System.out.println("The "+ k+" largest element is "+(arr[k+1]));
+				}
+				
+				for(int i=0;i<arr.length;i++) {
+					System.out.print(arr[i]+"\t");
+				}
+				break;
+
 			default:
 				System.out.println("Wrong choice");
 			}
