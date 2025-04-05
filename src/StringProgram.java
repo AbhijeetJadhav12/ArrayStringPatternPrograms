@@ -20,6 +20,8 @@ public class StringProgram {
 			System.out.println("11 Compare after backSpace");
 			System.out.println("12 Rverse each Word");
 			System.out.println("13. Permutation of String");
+			System.out.println("14. First not repeating Characters in String");
+			System.out.println("15. Count Number os word in String");
 			System.out.println("Enter choice");
 			int choice = sc.nextInt();
 			switch (choice) {
@@ -247,7 +249,43 @@ public class StringProgram {
 				}
 				System.out.println("Permutations");
 				permutation(c, 0);
-
+				break;
+			case 14:
+				sc.nextLine();
+				s = sc.nextLine();
+				for (int i = 0; i < s.length(); i++) {
+					boolean flag=false;
+					for (j = i+1; j < s.length(); j++) {
+						if (s.charAt(i) == s.charAt(j)) {
+							flag=true;
+						}
+					}if(!flag) {
+						System.out.println(s.charAt(i));
+						break;
+					}
+				}
+				break;
+			case 15:
+				sc.nextLine();
+				s=sc.nextLine();
+				count=0;
+				if(s==null||s.isEmpty()) {
+					count=0;;
+					return;
+				}
+				boolean word=false;
+				for(int i=0;i<s.length();i++) {
+					if(s.charAt(i)!=' ') {
+						if(!word) {
+							count++;
+							word=true;
+						}
+					}else {
+						word=false;
+					}
+					
+				}
+				System.out.println("Number Present in String: "+count);
 				break;
 			default:
 				System.out.println("Wrong choice");

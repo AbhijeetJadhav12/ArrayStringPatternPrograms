@@ -18,7 +18,7 @@ public class ArrayProgram {
 			System.out.println("5. Second largest Element");
 			System.out.println("6. Occurance of every element");
 			System.out.println("7. Missing number from of size n-1");
-			System.out.println("8. Merge two Sorted Array");
+			System.out.println("8. Merge two Array without Duplicate");
 			System.out.println("9. Move zeroes to end");
 			System.out.println("10. Inteserction of two array");
 			System.out.println("11. Unique Elements");
@@ -27,6 +27,8 @@ public class ArrayProgram {
 			System.out.println("14. Subarray with given sum");
 			System.out.println("15. Rotate array from N position");
 			System.out.println("17. Kth smallest element and Largest element");
+			System.out.println("18. Permutation of array");
+			System.out.println("19. Merge two Sorted Array");
 			System.out.println("Enter your choice");
 			int choice = sc.nextInt();
 
@@ -161,13 +163,11 @@ public class ArrayProgram {
 					System.out.print(arr[i] + "\t");
 				}
 				for (int i = 0; i < b.length; i++) {
-
 					boolean isCommon = false;
 					for (int j = 0; j < arr.length; j++) {
 						if (arr[j] == b[i]) {
 							isCommon = true;
 						}
-
 					}
 					if (!isCommon) {
 						System.out.print(b[i] + "\t");
@@ -367,25 +367,73 @@ public class ArrayProgram {
 				for (int i = 0; i < arr.length; i++) {
 					for (int j = i + 1; j < arr.length; j++) {
 						if (arr[i] > arr[j]) {
-							int tem=arr[i];
-							arr[i]=arr[j];
-							arr[j]=tem;
+							int tem = arr[i];
+							arr[i] = arr[j];
+							arr[j] = tem;
 						}
 					}
 				}
-				if(k>0 && k<=arr.length) {
-					System.out.println("The "+k+" Smallest element is "+arr[k-1]);
-					System.out.println("The "+ k+" largest element is "+(arr[k+1]));
+				if (k > 0 && k <= arr.length) {
+					System.out.println("The " + k + " Smallest element is " + arr[k - 1]);
+					System.out.println("The " + k + " largest element is " + (arr[k + 1]));
 				}
-				
-				for(int i=0;i<arr.length;i++) {
-					System.out.print(arr[i]+"\t");
+
+				for (int i = 0; i < arr.length; i++) {
+					System.out.print(arr[i] + "\t");
 				}
 				break;
+			case 18:
+				permutation(arr, 0);
+				break;
+			case 19:
+				System.out.println("Enter size for second Array");
+				sSize = sc.nextInt();
+				int e[] = new int[sSize];
+				System.out.println("Enet elemet for second array");
+				for (int i = 0; i < e.length; i++) {
+					e[i] = sc.nextInt();
+				}
 
+				int mergerArray[] = new int[size + sSize];
+				int i = 0, j = 0, o = 0;
+				while (i < size && j < sSize) {
+					if (arr[i] < e[j]) {
+						mergerArray[o++] = arr[i++];
+					} else {
+						mergerArray[o++] = e[j++];
+					}
+				}
+				while(i<size) {
+					mergerArray[o++]=arr[i++];
+				}
+				while(j<sSize) {
+					mergerArray[o++]=e[j++];
+				}
+				System.out.println("Merged Array");
+				for (int num : mergerArray) {
+					System.out.print(num+"\t");
+				}
+				break;
 			default:
 				System.out.println("Wrong choice");
 			}
 		} while (true);
+	}
+
+	static void permutation(int[] arr, int index) {
+		if (index == arr.length - 1) {
+			System.out.println(Arrays.toString(arr));
+		}
+		for (int i = index; i < arr.length; i++) {
+			swap(arr, index, i);
+			permutation(arr, index + 1);
+			swap(arr, index, i);
+		}
+	}
+
+	static void swap(int[] arr, int index, int i) {
+		int temp = arr[index];
+		arr[index] = arr[i];
+		arr[i] = temp;
 	}
 }

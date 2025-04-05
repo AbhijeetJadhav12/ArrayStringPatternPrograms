@@ -70,7 +70,6 @@ public class CheckNumbers {
 					count++;
 				}
 			}
-			// System.out.println("Count: "+count);
 			if (count <= 2) {
 				System.out.println(no);
 				nCount++;

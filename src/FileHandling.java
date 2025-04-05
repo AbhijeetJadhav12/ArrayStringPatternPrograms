@@ -55,10 +55,7 @@ public class FileHandling {
 		BufferedReader br = new BufferedReader(f);
 		String line;
 		br.readLine();
-//		while(line!=null)
-//		{
-//			
-//		}
+
 	}
 
 	private static void writeForCSV(String s) throws Exception {
@@ -84,7 +81,6 @@ public class FileHandling {
 		FileReader fr = new FileReader(f);
 		BufferedReader br = new BufferedReader(fr);
 		int length = (int) f.length();
-		// String line[] = new String[2];
 		String line;
 		while ((line = br.readLine()) != null) {
 			System.out.println(line);
